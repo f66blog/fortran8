@@ -1,15 +1,9 @@
-# Test
-
-gfortran-7/8
-Julia 1.0.0 
-
-
-
 # Jupyter gfortran kernel for Binder (with plotting features)
-- simple gfortran kernel 
+- simple gfortran kernel (gfortran-7.3.0/gfortran-8.0.1)
 
 - simple Matplotlib features ready for use 
 
+- IJulia (julia 1.0.0)
 
 ## Kernel
 
