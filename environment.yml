@@ -2,3 +2,4 @@ dependencies:
   - matplotlib
   - numpy
   - sympy
+  - jupyter_contrib_nbextensions

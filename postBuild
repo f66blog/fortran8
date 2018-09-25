@@ -6,3 +6,5 @@ tar zxvf julia-1.0.0-linux-x86_64.tar.gz
 export PATH=$PATH:~/julia-1.0.0/bin
 julia -e 'using Pkg; Pkg.add("IJulia"); Pkg.update()'
 rm julia-1.0.0-linux-x86_64.tar.gz 
+jupyter contrib nbextension install --user
+
