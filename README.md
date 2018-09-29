@@ -1,10 +1,12 @@
-# Jupyter gfortran kernel for Binder (with plotting features)[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/f66blog/fortran8/master)
+# Jupyter gfortran kernel for Binder (with plotting features)
+- lab      [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/f66blog/fortran8/master?urlpath=lab)
+- notebook [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/f66blog/fortran8/master)
+
 - simple gfortran kernel (gfortran-7.3.0/gfortran-8.0.1)
 
 - simple Matplotlib features ready for use 
 
 - IJulia (julia 1.0.0)
-
 ## Kernel
 
 Changed default kernel to gfortran. 
