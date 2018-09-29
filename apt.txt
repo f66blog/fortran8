@@ -3,4 +3,4 @@ gfortran-8
 
 less
 mpich
-open-coarray-bin
+open-coarrayas-bin
