@@ -12,7 +12,7 @@
 
 Changed default kernel to gfortran. 
 [Simple Fortran kernel for Jupyter](https://github.com/f66blog/jupyter-ifort-kernel)
-This kernel is eavily dependent on the predecessors work. 
+This kernel is heavily dependent on the predecessors work. 
 
 ## License
 
