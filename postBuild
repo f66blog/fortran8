@@ -14,8 +14,7 @@ tar zxvf flang-20190329-x86-70.tgz
 rm flang-20190329-x86-70.tgz
 cd ..
 wget 'https://sourceforge.net/projects/schur/files/Debian%20package/6.10/schur_6.10-2_amd64.deb'
-apt install ./schur_6.10-2_amd64.deb
-dpkg   -i   ./schur_6.10-2_amd64.deb      
+dpkg -x  ./schur_6.10-2_amd64.deb /      
 echo export LD_LIBRARY_PATH=~/flang/lib:$LD_LIBRARY_PATH >> ~/.bashrc
 echo export PATH=~/flang/bin:$PATH                       >> ~/.bashrc
 
