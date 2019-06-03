@@ -3,4 +3,5 @@ gfortran-8
 
 less
 mpich
-open-coarrays-bin
+open-coarrays-bin 
+./schur_6.10-2_amd64.deb
