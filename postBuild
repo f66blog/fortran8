@@ -19,7 +19,7 @@ wget https://sourceforge.net/projects/schur/files/Debian%20package/6.10/schur_6.
 dpkg -x ./schur_6.10-2_amd64.deb .
 rm schur_6.10-2_amd64.deb   
 wget http://http.us.debian.org/debian/pool/main/r/readline6/libreadline6_6.3-8+b3_amd64.deb
-dpkg -x libreadline6_6.3-8+b3_amd64.deb
+dpkg -x libreadline6_6.3-8+b3_amd64.deb .
 rm libreadline6_6.3-8+b3_amd64.deb   
 cd ..
 echo export SCHURLIB=~/schur/usr/share/schur  >>~/.bashrc  
