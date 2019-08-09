@@ -68,6 +68,9 @@ class RealTimeSubprocess(subprocess.Popen):
 
 
 class gfortKernel(Kernel):
+    """
+    Jupyter Kernel for gfortran 
+    """
     implementation = 'jupyter_gfort_kernel'
     implementation_version = '0.1'
     language = 'Fortran'
@@ -144,14 +147,16 @@ class gfortKernel(Kernel):
                   'fig': False,
                   'fig_arg': [],
                   'image': [],
-                 }
+                  'py': [],
+                  'writefile': [],
+             }
         
         for line in code.splitlines():
             if line.strip().startswith('%'):
                 key, value = line.strip().strip('%').split(":", 1)
                 key = key.lower()
              
-                if key in ['ldflags', 'fcflags', 'args']:
+                if key in ['ldflags', 'fcflags', 'args', 'writefile']:
                     magics[key] = shsplit(value)
                 elif key in ['module']:  
                     magics[key] = shsplit(value)
@@ -164,6 +169,8 @@ class gfortKernel(Kernel):
                     magics['fig_arg'] = value
                 elif key in ['image']:  
                     magics[key] = shsplit(value)
+                elif key in ['py']:  
+                    magics[key] = True
                 else:
                     pass # need to add exception handling
         return magics
@@ -203,6 +210,25 @@ class gfortKernel(Kernel):
                 return {'status': 'ok', 'execution_count': self.execution_count, 'payload': [],
                     'user_expressions': {}}
 
+        elif magics['py']:
+            try: 
+                for line in code.splitlines():
+                    if line.startswith(('%', '%%', '$', '?')):
+                        continue
+                    elif line.strip() == 'print':
+                        self._write_to_stdout('\n')    
+                    elif line.strip().startswith(('print')):
+                        _, rhs = line.strip().strip('%').split("t ", 1)
+                        self._write_to_stdout(str(eval(rhs)) + '\n')
+                    else:
+                        exec(line)
+
+            except Exception as e:
+                self._write_to_stderr("[fortran kernel]{}".format(e))
+            finally:
+                return {'status': 'ok', 'execution_count': self.execution_count, 'payload': [],
+                    'user_expressions': {}}
+
         elif magics['image'] != []:
             from base64 import b64encode
                           
@@ -218,6 +244,27 @@ class gfortKernel(Kernel):
                     self.send_response(self.iopub_socket, 'display_data',{'data':data,'metadata':{}})
             return {'status': 'ok', 'execution_count': self.execution_count, 'payload': [],
                     'user_expressions': {}}
+
+        elif magics['writefile'] != []:
+            if len(magics['writefile']) > 1:
+                if magics['writefile'][1] == '-a':
+                    mode = 'a'
+                    self._write_to_stderr('append to file:')
+            else:
+                mode = 'w'
+                self._write_to_stderr('write to file:')
+            self._write_to_stderr(magics['writefile'][0])
+
+            with open(magics['writefile'][0], mode, encoding='UTF-8') as write_file:
+                for line in code.splitlines():
+                    if line.startswith(('%writefile', '%%writefile')):
+                         continue
+                    write_file.write(line + '\n')
+                write_file.flush()
+
+            return {'status': 'ok', 'execution_count': self.execution_count, 'payload': [],
+                    'user_expressions': {}}
+
         else:
             tmpdir = self.master_path
             with self.new_temp_file(suffix=magics['compiler'][1], dir=tmpdir) as source_file:

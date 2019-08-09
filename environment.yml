@@ -2,4 +2,8 @@ dependencies:
   - matplotlib
   - numpy
   - sympy
+  - pandas
+  - pillow
+  - pip
+  - scipy
   - jupyter_contrib_nbextensions
