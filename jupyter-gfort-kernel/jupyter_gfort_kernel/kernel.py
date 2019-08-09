@@ -139,11 +139,11 @@ class gfortKernel(Kernel):
     
     def _filter_magics(self, code):
 
-        magics = {'fcflags': [],
+        magics = {'fcflags': ['-Wall'],
                   'ldflags': [],
                   'module': [],
                   'args': [],
-                  'compiler': ['gfortran', '.f90'],
+                  'compiler': ['gfortran-8', '.f90'],
                   'fig': False,
                   'fig_arg': [],
                   'image': [],
