@@ -14,8 +14,11 @@ Changed default kernel to gfortran.
 [Simple Fortran kernel for Jupyter](https://github.com/f66blog/jupyter-ifort-kernel)
 This kernel is heavily dependent on the predecessors work. 
 
+
+```
 pip install -e ./jupyter-gfort-kernel
 jupyter kernelspec install ./jupyter-gfort-kernel/gfort_spec --user
+```
 
 ## License
 
