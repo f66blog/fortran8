@@ -7,7 +7,7 @@
 
 - simple Matplotlib features ready for use 
 
-- IJulia (julia 1.1.1)
+- IJulia (julia 1.2.0)
 ## Kernel
 
 Changed default kernel to gfortran. 
