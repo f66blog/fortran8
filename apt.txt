@@ -1,5 +1,5 @@
 apt-utils
-gfortran
+gfortran-4
 gfortran-5
 gfortran-6
 gfortran-7
